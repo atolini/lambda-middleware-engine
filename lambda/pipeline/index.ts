@@ -14,23 +14,8 @@ const defaultErrorHandler: ErrorHandler<APIGatewayProxyEvent, APIGatewayProxyRes
         });
     };
 
-const defaultResponse: APIGatewayProxyResult = {
-    statusCode: 200,
-    headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify({
-        message: "Success",
-    }),
-};
-
-
-export const Pipeline = (_debugger?: boolean): Chain<APIGatewayProxyEvent, APIGatewayProxyResult, Context> => {
-    if (_debugger)
-        return new Chain<APIGatewayProxyEvent, APIGatewayProxyResult, Context>(defaultErrorHandler, defaultResponse, true);
-
-    return new Chain<APIGatewayProxyEvent, APIGatewayProxyResult, Context>(defaultErrorHandler, defaultResponse);
+export const Pipeline = (): Chain<APIGatewayProxyEvent, APIGatewayProxyResult, Context> => {
+    return new Chain<APIGatewayProxyEvent, APIGatewayProxyResult, Context>(defaultErrorHandler);
 };
 
 
